@@ -12,6 +12,16 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      mesvar_1:
+        description: "Message 1"
+        required: true
+        default: "Hello"
+
+      mesvar_2:
+        description: "Message 2"
+        required: true
+        default: "test"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -27,10 +37,10 @@ jobs:
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
-        run: echo Hello, world!
+        run: echo ${{ github.event.inputs.mesvar_1 }}, world!
 
       # Runs a set of commands using the runners shell
       - name: Run a multi-line script
         run: |
           echo Add other actions to build,
-          echo test, and deploy your project.
+          echo ${{ github.event.inputs.mesvar_2 }}, and deploy your project.
